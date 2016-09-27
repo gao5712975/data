@@ -1,0 +1,224 @@
+/*
+ * æ¡†æž¶cssæ ·å¼ by Yunior 2015.12.31
+ *  */
+
+.frame-top{position:absolute;top:0;left:0;right:0;height:60px;background-color:#2f3541;z-index:100;}
+.frame-top .logo{float: left;margin-left:20px;margin-top:5px;}
+.frame-top .logo  img{width:100px;}
+.frame-top .logo .logo-version{display: inline-block;color:#999;}
+.frame-top .logo .logo-version  i{background-color:#ff5f60;border-radius:4px;color:#fff;padding:1px 7px;}
+
+.frame-top .info{float:right; position: relative;}
+.frame-top .frame-top-setting{float:right;height:60px;position: relative;padding:0 30px;background-color:#56ABE4;color:#fff;cursor: pointer;}
+.frame-top .frame-top-setting-name{margin-top:12px;text-align: right;line-height:1.4em;}
+.frame-top .frame-top-setting-name .user{min-width: 100px}
+.frame-top .frame-top-setting-icon1{position:absolute;font-size:20px;top:50%;margin-top:-10px;left:5px;}
+.frame-top .frame-top-setting-icon2{position:absolute;font-size:15px;top:50%;margin-top:-6px;right:5px;color:#438FBC}
+.frame-top .frame-top-setting-list{
+	position: absolute;right:0;left:0;top:60px;
+	background-color:#fff;color:#333;display: none;
+	border-left:1px solid #CCCCCC;border-right:1px solid #CCCCCC;
+	z-index: 10000;
+}
+.frame-top .frame-top-setting-list a{display:block;position: relative;line-height:40px;border-bottom:1px solid #CCCCCC;padding:0 10px 0 60px;}
+.frame-top .frame-top-setting-list a:hover{background-color:#56ABE4;color:#FFFFFF;}
+.frame-top .frame-top-setting-list i.yc-icon{position: absolute;line-height:20px;font-size:20px;left:30px;top:50%;margin-top:-10px;}
+.frame-top .frame-top-help,.frame-top .frame-top-message{
+	float:right;height:60px;line-height:60px;color:#fff;cursor:pointer;
+	padding:0 10px 0px 40px;margin-right:1px;position: relative;
+}
+.frame-top .frame-top-help:hover,.frame-top .frame-top-message:hover{background-color:#56ABE4;}
+.frame-top .frame-top-help i.yc-icon,.frame-top .frame-top-message i.yc-icon{position: absolute;font-size:24px;top:20px;left:6px;line-height:20px;}
+.frame-top .frame-top-message span{border-radius:50%;background-color:#E46C0A;height:20px;line-height:20px;min-width:20px;display:inline-block;text-align: center;}
+
+
+.frame-left{position: absolute;top:60px;bottom:0;left:0;width:90px;background-color:#2f3541;z-index:100;}
+.frame-left *{box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;}
+.frame-left .menu li{height:90px;border-bottom:1px solid #36404b;}
+.frame-left .menu li a,.frame-left .menu li a:visited{display: block;width:85px;height:35px;padding-top:55px;text-align:center;color:#8388a1;border-left:5px solid #2f3541;position: relative;}
+.frame-left .menu li a i{position: absolute;height:45px;width:45px;left:50%;margin-left:-22px;top:10px;font-size:38px;line-height:45px;}
+.frame-left .menu li a:hover{color:#41a0da;}
+.frame-left .menu li a.current{background-color:#fff;border-left:5px solid #47A4DF;color:#41a0da;}
+
+
+
+.frame-main{position:absolute;bottom:0;right:0;top:60px;left:90px;}
+.frame-main iframe{border:none;width:100%;height:100%;position: absolute;}
+
+.frame-info{ background: #FFFFFF; position: absolute; left: -60px; top: 60px; border: 10px solid #497abc; height: 400px; max-width: 600px; display: none;}
+.frame-info .frame-info-box{
+	height: 350px;
+	overflow-y: auto
+}
+.frame-info .noticeTitle th.th1{
+	text-align: center;
+	width:50px;
+}
+.frame-info .noticeTitle th.th2{
+	cursor: pointer;
+	text-align: center;
+	width: 200px;
+	/*white-space:nowrap;*/
+	overflow:hidden;
+	/*text-overflow:ellipsis;*/
+	/*word-wrap: normal;*/
+}
+.frame-info .noticeTitle th.th3{
+	text-align: center;
+	width:100px;
+}
+
+.info-button{ width: 100%; height: 30px; position: absolute; bottom: 0px; right: 0px; background: #497abc;}
+.info-button input{ float: right; margin-top: 10px; width: 60px; height: 20px; background: #017cfe; color: #FFFFFF;}
+
+
+/* å¯†ç å¼¹çª—  */
+/*.dialog-bg-pass{*/
+	/*position:fixed; top:0;right:0;left:0;bottom:0;z-index:3000;*/
+	/*background:rgba(0,0,0, 0.2);*background: none;filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#7f000000', endColorstr='#7f000000');*/
+/*}*/
+
+.leftTorightBig .yc-compile-section{
+	margin-top: 20px;
+}
+
+.leftTorightBig .yc-section-text {
+	padding: 0 20px 0 10px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.leftTorightBig .yc-section-input {
+	height: 30px;
+}
+
+.leftTorightBig .yc-section-input .validation,.validaBo{
+	padding-left: 15px;
+	color: red;
+}
+
+.leftTorightBig .yc-section-input .user{
+	display: block;
+	height: 35px;
+	line-height: 30px;
+	color: #848484;
+}
+
+.leftTorightBig .yc-section-input >input {
+	width: 100%;
+	border: 1px #BFC4CD solid;
+	height: 35px;
+	padding: 0 5px;
+	max-width: 220px;
+}
+
+.leftTorightBig .yc-section-input >input:focus {
+	border: 1px #62A8D1 solid;
+}
+
+.btn-default {
+	color: #ffffff;
+	background-color: #247BD3;
+	border-color: #cccccc;
+}
+
+.leftTorightBig .yc-bott-alter{
+	width: 90px;
+	height: 30px;
+	margin-right: 20px;
+}
+
+/*.leftTorightBig .dialog-frame-bottom{*/
+	/*padding: 10px 10px 10px 20px;*/
+	/*width: 100%;*/
+	/*height: 40px;*/
+/*}*/
+
+/*.dialog-frame-bottom .yc-section-text {*/
+	/*padding: 0 20px 0 10px;*/
+	/*height: 30px;*/
+/*}*/
+
+.dialog-frame-bottom .yc-bott-alter{
+	width: 90px;
+	height: 30px;
+	margin-right: 20px;
+}
+
+/*.dialog-frame-bottom .yc-bott-alter-scal{*/
+	/*color: #247BD3;*/
+	/*font-size: 16px;*/
+	/*margin:50px 20px 0 0;*/
+	/*cursor: pointer;*/
+	/*text-decoration: underline;*/
+/*}*/
+
+
+
+/*user*/
+
+.leftTorightBig {
+	margin-top: 10px;
+	max-width: 1000px;
+	right: -1100px;
+	top: 25%;
+	background: #fff;
+	position: fixed;
+	box-shadow: 0 4px 15px #888888;
+	-webkit-box-shadow: 0 4px 15px #888888;
+}
+
+.leftTorightBig .top {
+	background: #62a9d1;
+	height: 40px;
+	line-height: 40px
+}
+
+.leftTorightBig .top h3 {
+	color: white;
+	font-size: 16px;
+	margin-left: 10px;
+	display: inline-block;
+	float: left;
+}
+
+.leftTorightBig .top a {
+	float: right;
+	margin-right: 10px
+}
+
+.leftTorightBig .header {
+	padding: 20px 20px 10px
+}
+
+.leftTorightBig .body {
+	padding: 0 20px 10px
+}
+
+.leftTorightBig .body ul {
+	padding-top: 15px;
+	padding-left: 10px;
+}
+
+.leftTorightBig .body ul li{
+	padding-bottom: 15px;
+}
+
+.leftTorightBig .body ul li .userInfo:nth-child(1){
+	display: inline-block;
+	width: 250px;
+}
+.leftTorightBig .body ul li .userInfo:nth-child(2){
+	display: inline-block;
+	width: 270px;
+}
+
+.leftTorightBig .body ul li .userInfo span:first-child{
+	font-size: 14px;
+	font-weight: bold;
+	width: 80px;
+	display: inline-block;
+}

@@ -1,0 +1,91 @@
+<html ng-app="modal">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Document</title>-->
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="chosen.css">
+    <script src="angular.js"></script>
+    <script src="modal.js"></script>
+
+</head>
+
+<body ng-controller="moduleCtrl">
+
+    <a href="javascript:void(0)" ng-click="show()" id='show'> 显示 </a>
+
+    <div class="dialog-bg hide" yc-module="module">
+        <div class="dialog-wraper">
+            <div class="dialog-title">
+                <span class="title">title</span>
+                <i class="dialog-close yc-icon">&#xe614;</i>
+            </div>
+            <div class="dialog-con">
+
+            </div>
+            <div class="dialog-submit">
+                <a href="javascript:void(0)" class="ok">确定</a>
+                <a href="javascript:void(0)" class="no">取消</a>
+            </div>
+        </div>
+    </div>
+
+    <!--<div>
+        {{userList}}
+    </div>
+-->
+    <p>{{query._select}}</p>
+    <input type="" name="" value="">
+
+    <div yc-select="userList" width="150" value="query._select" key="id" session="session" group="session-test">
+
+    </div>
+    <p>{{query.select}}</p>
+    <div yc-select="userLists" width="150" value="query.select" key="id" session="_session" group="session-test">
+
+    </div>
+
+    <!--
+        
+
+    <div yc-select="userList" style="width:120px">
+
+    </div>-->
+
+    <!--<p ng-repeat="l in userList.list">{{l.name}}</p>-->
+
+
+    
+
+    <div class="chosen-container chosen-container-single">
+        <a class="chosen-single chosen-default">
+            <span>今日头条测试(暂停)</span>
+            <div>
+                <b></b>
+            </div>
+        </a>
+        <div class="chosen-drop">
+            <div class="chosen-search">
+                <input placeholder="" type="text" autocomplete="off">
+            </div>
+            <ul class="chosen-results">
+                <li class="active-result result-selected highlighted" data-option-array-index="1">全部</li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            
+        </div>
+        <div yc-print="1">
+            飒飒飒飒撒1
+        </div>
+        <div yc-print="2">
+            asdasdasdasd2
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <script src="angular-modal-service.js"></script>
+    <script src="index.js"></script>
+    <style>
+        .dialog-bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 3000;
+            overflow-y: auto
+        }
+
+        .dialog-wraper {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            min-height: 150px;
+            min-width: 400px;
+            max-width: 1000px;
+            max-height: 800px;
+            overflow: auto;
+            margin-left: -200px;
+            margin-top: -150px;
+            background-color: #fff;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 15px #888;
+            -webkit-box-shadow: 0 4px 15px #888
+        }
+
+        .dialog-title {
+            background-color: #F9F9FB;
+            height: 34px;
+            line-height: 34px;
+            border-bottom: 1px solid #E6E6E8;
+            text-indent: 1em;
+            position: relative;
+            font-size: 14px
+        }
+
+        .dialog-close {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            cursor: pointer;
+            font-size: 16px
+        }
+
+        .dialog-con {
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 14px
+        }
+
+        .dialog-submit {
+            text-align: center;
+            padding: 10px 0 20px
+        }
+
+        .dialog-submit a {
+            display: inline-block;
+            font-size: 14px;
+            margin: 0 10px;
+            border-radius: 3px;
+            padding: 0 20px;
+            height: 28px;
+            line-height: 28px;
+            color: #fff;
+            letter-spacing: 5px
+        }
+
+        .dialog-submit a.ok {
+            background-color: #47A4DF
+        }
+
+        .dialog-submit a.no {
+            background-color: #CCCDD2
+        }
+    </style>
+</head>
+<body>
+<!--<div class="dialog-bg">-->
+    <!--<div class="dialog-wraper">-->
+        <!--<div class="dialog-title">-->
+            <!--<i class="dialog-close yc-icon">&#xe614;</i>-->
+        <!--</div>-->
+        <!--<div class="dialog-con" ng-transclude="">-->
+
+        <!--</div>-->
+        <!--<div class="dialog-submit">-->
+            <!--<a href="javascript:void (0)" class="ok">确定</a>-->
+            <!--<a href="javascript:void (0)" class="no">取消</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div ng-controller="dialogCtrl">
+    <button ng-click="show()">dialog</button>
+</div>
+
+</body>
+</html>

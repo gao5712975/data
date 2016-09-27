@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="ycui.css">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="frame.css">
+
+    <style>
+        .yc-bott-alter {
+            width: 110px;
+            height: 35px;
+            background-color: #247BD3;
+            text-align: center;
+            line-height: 35px;
+            color: #fff;
+            font-size: 20px;
+            margin: 50px 20px 0 0;
+            cursor: pointer
+        }
+        .yc-compile-bott {
+            margin-left: 120px
+        }
+        .yc-compile-bott .yc-bott-alter-scal {
+            color: #247BD3;
+            font-size: 16px;
+            margin: 50px 20px 0 0;
+            cursor: pointer;
+            text-decoration: underline
+        }
+        .yc-compile-add {
+            height: 31px;
+            border-bottom: 1px #E6E6E6 solid;
+            margin-left: 30px
+        }
+        .yc-compile-head {
+            font-weight: 700;
+            font-style: normal;
+            font-size: 16px;
+            display: inline-block;
+            border-top: 1px #4AA7EA solid;
+            background-color: #fff;
+            border-bottom: 1px #fff solid;
+            border-right: 1px #E6E6E6 solid;
+            border-left: 1px #E6E6E6 solid;
+            padding: 5px 20px;
+            z-index: 1;
+            margin-left: 20px
+        }
+        .yc-compile-articl {
+            margin: 30px 0 0 20px
+        }
+    </style>
+</head>
+<body>
+<div class="yc-main-top clear">
+    <a href="../{{rule.url}}" ng-repeat="rule in ruleListTab" ng-class="{'cur':isLocation(rule.urlAll)}"><span ng-bind="rule.name"></span></a>
+</div>
+<div class="yc-compile" ng-controller="ContentEditCtrl" style="padding-top: 50px">
+
+    <div class="yc-compile-add">
+        <div class="yc-compile-head">修改内容</div>
+    </div>
+    <form>
+        <div class="yc-compile-articl">
+
+            <style>
+                #holiday{
+                    display: inline-block;
+                    width: auto;
+                    height: auto;
+                    border: 1px solid #ccc;
+                }
+                #holiday .body {
+                    width: 267px;
+                    margin: 10px;
+                    -webkit-user-select:none;
+                    -moz-user-select:none;
+                    -ms-user-select:none;
+                    user-select:none;
+                }
+                #holiday .header {
+                    width: 267px;
+                    margin: 10px;
+                    -webkit-user-select:none;
+                    -moz-user-select:none;
+                    -ms-user-select:none;
+                    user-select:none;
+                }
+                #holiday .week{
+                    line-height: 35px;
+                    vertical-align: middle;
+                    text-align: center;
+                    display: inline-block;
+                    width: 35px;
+                    height: 35px;
+                    cursor: pointer;
+                }
+                #holiday .date{
+                    line-height: 35px;
+                    vertical-align: middle;
+                    text-align: center;
+                    display: inline-block;
+                    width: 35px;
+                    height: 35px;
+                    cursor: pointer;
+                }
+                #holiday .date:hover{
+                    background-color: #888;
+                    color: white;
+                }
+                #holiday .week:hover{
+                    background-color: #888;
+                    color: white;
+                }
+            </style>
+
+
+            <div id="holiday">
+                <div class="header">
+                    <div class="week">日</div>
+                    <div class="week">一</div>
+                    <div class="week">二</div>
+                    <div class="week">三</div>
+                    <div class="week">四</div>
+                    <div class="week">五</div>
+                    <div class="week">六</div>
+                </div>
+                <div class="body">
+                    <div class="date">1</div>
+                    <div class="date">2</div>
+                    <div class="date">3</div>
+                    <div class="date">4</div>
+                    <div class="date">5</div>
+                    <div class="date">6</div>
+                    <div class="date">7</div>
+                    <div class="date">8</div>
+                    <div class="date">9</div>
+                    <div class="date">10</div>
+                    <div class="date">11</div>
+                    <div class="date">12</div>
+                    <div class="date">13</div>
+                    <div class="date">14</div>
+                    <div class="date">15</div>
+                    <div class="date">16</div>
+                    <div class="date">17</div>
+                    <div class="date">18</div>
+                    <div class="date">19</div>
+                    <div class="date">20</div>
+                    <div class="date">21</div>
+                    <div class="date">22</div>
+                    <div class="date">23</div>
+                    <div class="date">24</div>
+                    <div class="date">25</div>
+                    <div class="date">26</div>
+                    <div class="date">27</div>
+                    <div class="date">28</div>
+                    <div class="date">29</div>
+                    <div class="date">30</div>
+                    <div class="date">31</div>
+                </div>
+                <div class="close">
+
+                </div>
+            </div>
+
+
+
+            <script>
+
+            </script>
+
+
+
+
+
+
+
+
+            <div class="yc-compile-bott">
+                <input type="button" class="yc-bott-alter btn-default" value="提 交" ng-click="postEdit()">
+                <a class="yc-bott-alter-scal" href="#">取消</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

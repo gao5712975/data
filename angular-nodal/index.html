@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="angular.js"></script>
+    <script src="ui-bootstrap-tpls-2.1.3.min.js"></script>
+    <script>
+        var app = angular.module('app',['ui.bootstrap']);
+
+        app.controller('AlertDemoCtrl', function ($scope) {
+            $scope.alerts = [
+                { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+                { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+            ];
+
+            $scope.addAlert = function() {
+                $scope.alerts.push({msg: 'Another alert!'});
+            };
+
+            $scope.closeAlert = function(index) {
+                $scope.alerts.splice(index, 1);
+            };
+        });
+
+        app.controller('ModalDemoCtrl', function ($uibModal, $log) {
+            var $ctrl = this;
+            $ctrl.items = ['item1', 'item2', 'item3'];
+
+            $ctrl.animationsEnabled = true;
+
+            $ctrl.open = function (size) {
+                var modalInstance = $uibModal.open({
+                    animation: $ctrl.animationsEnabled,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'myModalContent.html',
+                    controller: 'ModalInstanceCtrl',
+                    controllerAs: '$ctrl',
+                    size: size,
+                    resolve: {
+                        items: function () {
+                            return $ctrl.items;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (selectedItem) {
+                    $ctrl.selected = selectedItem;
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
+            };
+
+            $ctrl.openComponentModal = function () {
+                var modalInstance = $uibModal.open({
+                    animation: $ctrl.animationsEnabled,
+                    component: 'modalComponent',
+                    resolve: {
+                        items: function () {
+                            return $ctrl.items;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (selectedItem) {
+                    $ctrl.selected = selectedItem;
+                }, function () {
+                    $log.info('modal-component dismissed at: ' + new Date());
+                });
+            };
+
+            $ctrl.toggleAnimation = function () {
+                $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
+            };
+        });
+
+        app.controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
+            var $ctrl = this;
+            $ctrl.items = items;
+            $ctrl.selected = {
+                item: $ctrl.items[0]
+            };
+
+            $ctrl.ok = function () {
+                $uibModalInstance.close($ctrl.selected.item);
+            };
+
+            $ctrl.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+            };
+        });
+
+        // Please note that the close and dismiss bindings are from $uibModalInstance.
+ 
+        angular.module('ui.bootstrap.demo').component('modalComponent', {
+            templateUrl: 'myModalContent.html',
+            bindings: {
+                resolve: '<',
+                close: '&',
+                dismiss: '&'
+            },
+            controller: function () {
+                var $ctrl = this;
+
+                $ctrl.$onInit = function () {
+                    $ctrl.items = $ctrl.resolve.items;
+                    $ctrl.selected = {
+                        item: $ctrl.items[0]
+                    };
+                };
+
+                $ctrl.ok = function () {
+                    $ctrl.close({$value: $ctrl.selected.item});
+                };
+
+                $ctrl.cancel = function () {
+                    $ctrl.dismiss({$value: 'cancel'});
+                };
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+
+<div ng-controller="AlertDemoCtrl">
+    <script type="text/ng-template" id="alert.html">
+        <div ng-transclude></div>
+    </script>
+
+    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
+    <div uib-alert template-url="alert.html" style="background-color:#fa39c3;color:white">A happy alert!</div>
+    <button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>
+</div>
+
+<div ng-controller="ModalDemoCtrl as $ctrl">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul>
+                <li ng-repeat="item in $ctrl.items">
+                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ $ctrl.selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open('lg')">Large modal</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open('sm')">Small modal</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.toggleAnimation()">Toggle Animation ({{ $ctrl.animationsEnabled }})</button>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.openComponentModal()">Open a component modal!</button>
+    <div ng-show="$ctrl.selected">Selection from a modal: {{ $ctrl.selected }}</div>
+</div>
+
+</body>
+</html>
