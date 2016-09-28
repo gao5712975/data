@@ -1,7 +1,7 @@
 /**
  * Created by moka on 16-6-15.
  */
-var PORT = 8080;
+var PORT = 8081;
 var MIME = {
     'htm':  'text/html',
     'html': 'text/html',

@@ -1,2 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-4.js
+# Created by .ignore support plugin (hsz.mobi
+.idea
+.vscode
+node_modules
