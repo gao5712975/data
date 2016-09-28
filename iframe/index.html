@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe</title>
+</head>
+<body>
+<a href="a.html" target="main">a</a>
+<a href="b.html" target="main">b</a>
+<iframe name="main" frameborder="0">
+
+</iframe>
+
+<script>
+    route={
+        start:function(){
+            this.match(top.location.hash);
+            this.listen();
+        },
+        url:function(url){
+            var tdoc=$(top.document.body),
+                    ifr=tdoc.find("#main"),
+                    menu=(url.match(this.routeReg)||[])[1];
+
+            ifr&&(tdoc.find(".menu li a").removeClass("current"),tdoc.find(".menu li[data-menu="+menu+"] a").addClass("current"), ifr.attr("src",url.slice(1)));
+        },
+        routeReg:/^#?(index|finace|report|spread|tool|user)/i,
+        match:function(url){
+            this.routeReg.test(url)&&this.url(url);
+        },
+        listen:function(){
+            var that=this;
+            top.onhashchange=function(event){
+                that.match(top.location.hash);
+            }
+        },
+        change:function(url){
+            this.routeReg.test(url)&&(top.location.hash=url);
+        }
+    };
+    route.start();
+
+
+</script>
+</body>
+</html>
