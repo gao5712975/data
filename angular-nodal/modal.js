@@ -384,8 +384,8 @@ app.directive('ycSelect', ['$animate', '$compile', function ($animate, $compile)
             } ()
 
             scope.select.$destroy = function(){
-                scope.select.$list = null;//搜索结果排除存放容器;
-                scope.select.$placeholder = null;//结果存放容器;
+                scope.select.$list = {};//搜索结果排除存放容器;
+                scope.select.$placeholder = {};//结果存放容器;
                 scope.select.placeholder = scope.placeholder || '请选择内容';
                 scope.select.$$placeholder = scope.placeholder || '请选择内容';
                 scope.value = '';
@@ -439,13 +439,17 @@ app.directive('ycSelect', ['$animate', '$compile', function ($animate, $compile)
                     '13': function () {
                         var i = this.have();
                         var lis = this.list();
-                        lis[i] && lis[i].click();
+                        if(lis[i]){
+                            lis[i].click();
+                        }else if(lis[0]){
+                            lis[0].click();
+                        }
                     },
                     '9': function () {
                         containerStatus(0);
                     }
                 }
-                doing[String(keyCode)]();
+                doing[String(keyCode)] && doing[String(keyCode)]();
             })
 
             //输入框失焦事件
