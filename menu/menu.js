@@ -1,11 +1,5 @@
-var app = angular.module('modal', []);
-
-app.controller('menuCtrl',['$scope',function(){
-
-}])
-
-// window hash标志 iframe ID
-!function(win,key,frame){
+// window hash标志 iframe ID _hash 默认hash 没有注册的路由就会跳到这个默认的路由上
+!function(win,key,frame,_hash){
     function Route(){
         this.regex = {};
         this.data = {};
@@ -16,7 +10,8 @@ app.controller('menuCtrl',['$scope',function(){
     Route.prototype.changeState = function (hash) {
         if(hash){
             var url = this.getUrl(hash);
-            document.getElementById(frame).setAttribute('src',url);
+            var iframe =document.getElementById(frame);
+            iframe.contentWindow.location.replace(url);
             return true;
         }
     };
@@ -71,6 +66,9 @@ app.controller('menuCtrl',['$scope',function(){
         var hash = _self.getHash();
         if(_self.getUrl(hash)){
             _self.changeState(hash);
+        }else{
+            _self.changeState(_hash);
+            top.location.hash =  key + '/' + _hash;
         }
         _self.listen();
     };
@@ -81,37 +79,37 @@ app.controller('menuCtrl',['$scope',function(){
             _self.data = data;
         }
     }
-}(this,'!','iframe');
+}(this.top,'!','iframe','a');
 
 
 //全局hash路由控制
-var route = {
-    search:{},
-    start: function () {
-        this.match(top.location.hash);
-        this.listen();
-    },
-    url: function (url) {
-        var tdoc = $(top.document.body),
-            ifr = tdoc.find("#main"),
-            menu = (url.match(this.routeReg) || [])[1];
+// var route = {
+//     search:{},
+//     start: function () {
+//         this.match(top.location.hash);
+//         this.listen();
+//     },
+//     url: function (url) {
+//         var tdoc = $(top.document.body),
+//             ifr = tdoc.find("#main"),
+//             menu = (url.match(this.routeReg) || [])[1];
 
-        ifr && (tdoc.find(".menu li a").removeClass("current"), tdoc.find(".menu li[data-menu=" + menu + "] a").addClass("current"), ifr.attr("src", url.slice(1)));
-    },
-    routeReg: /^#?(ADManage|SystemManage|ResourceManage|ReportManage|ClientManage)/i,
-    match: function (url) {
-        this.routeReg.test(url) && this.url(url);
-    },
-    listen: function () {
-        var that = this;
-        top.onhashchange = function (event) {
-            that.match(top.location.hash);
-        }
-    },
-    change: function (url,data) {
-        this.routeReg.test(url) && (top.location.hash = url,this.search = data);
-    }
-};
+//         ifr && (tdoc.find(".menu li a").removeClass("current"), tdoc.find(".menu li[data-menu=" + menu + "] a").addClass("current"), ifr.attr("src", url.slice(1)));
+//     },
+//     routeReg: /^#?(ADManage|SystemManage|ResourceManage|ReportManage|ClientManage)/i,
+//     match: function (url) {
+//         this.routeReg.test(url) && this.url(url);
+//     },
+//     listen: function () {
+//         var that = this;
+//         top.onhashchange = function (event) {
+//             that.match(top.location.hash);
+//         }
+//     },
+//     change: function (url,data) {
+//         this.routeReg.test(url) && (top.location.hash = url,this.search = data);
+//     }
+// };
 /*
 var Q = function (W, D, M, HTML, hash, view, arg, LL, i, index, Regex, Q) {
     HTML = D.getElementsByTagName('html')[0];
