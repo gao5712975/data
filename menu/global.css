@@ -306,8 +306,8 @@ tr th.th200-max {
 }
 
 .animated {
-    -webkit-animation-duration: .4s;
-    animation-duration: .4s;
+    -webkit-animation-duration: .2s;
+    animation-duration: .2s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
@@ -316,6 +316,7 @@ tr th.th200-max {
     -webkit-animation-name: slideUp;
     animation-name: slideUp;
     transform-origin: top;
+    display: none;
 }
 
 @-webkit-keyframes slideUp {
@@ -346,6 +347,7 @@ tr th.th200-max {
     -webkit-animation-name: slideDown;
     animation-name: slideDown;
     transform-origin: top;
+    display: inline-block;
 }
 
 @-webkit-keyframes slideDown {

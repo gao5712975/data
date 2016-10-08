@@ -49,6 +49,71 @@ $(function () {
 //     }
 // };
 
+//对象合并
+function extend(target){
+    var arr = arguments;
+    for(var i = 0;i<arr.length;i++){
+        if(typeof arr[i] == 'object'){
+            for(var a in arr[i]){
+                target[a] = arr[i][a]
+            }
+        }
+    }
+    return target;
+}
+
+//通用的上传方法
+var uploadInit = function (config) {
+    var $config = {
+        auto:false,
+        swf: baseUrl + "/static/lib/Uploader.swf",
+        compress: false,
+        duplicate: true,
+        fileVal: "uploadFile",
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    };
+    extend($config, config);
+    var uploader = WebUploader.create(config);
+    document.querySelector(config.pick.id).style.lineHeight = 0.5;
+    uploader.on('error', function (err) {
+        ycui.alert({
+            content: "错误的文件类型",
+            timeout: -1
+        });
+        ycui.loading.hide();
+        uploader.reset();
+        config.error && config.error(err);
+    });
+
+    uploader.on('uploadError', function (file) {
+        ycui.alert({
+            title: '失败提示',
+            content: '由于网络超时上传失败，请重新上传！',
+            timeout: -1
+        });
+        ycui.loading.hide();
+        uploader.reset();
+        config.uploadError && config.uploadError(file);
+    });
+
+    uploader.on('uploadComplete', function () {
+        ycui.loading.hide();
+        config.uploadComplete && config.uploadComplete();
+    });
+
+    config.beforeFileQueued && uploader.on('beforeFileQueued', config.beforeFileQueued);
+
+    config.uploadBeforeSend && uploader.on('uploadBeforeSend', config.uploadBeforeSend);
+
+    config.uploadSuccess && uploader.on('uploadSuccess', config.uploadSuccess);
+    //destroy
+    return uploader
+};
+
 var cookie = {
     get: function (t, e) {
         var i = new RegExp("(^| )" + t + "=([^;]*)(;|$)"),

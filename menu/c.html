@@ -2,21 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="child.js"></script>
 </head>
 <body>
     <a href="javascript:void(0)" data-route="a">a</a>
 </body>
-<script>
-    if( window.self != window.top){
-    document.addEventListener('click',function(e){
-        var t = e.target;
-        if(t && t.nodeName ==  'A'){
-            e.preventDefault();
-            e.stopPropagation();
-            var route = t.getAttribute('data-route');
-            window.top.$R.go(route);
-        }
-    })
- }
-</script>
 </html>
