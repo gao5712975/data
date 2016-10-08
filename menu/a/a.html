@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../child.js"></script>
+    <script src="../jquery.min.js"></script>
+    <script src="../webuploader.min.js"></script>
+    <script src="../global.js"></script>
+    <link rel="stylesheet" href="../webuploader.css">
+</head>
+
+<body>
+<a href="javascript:void(0)" data-route="b?id=1">ba</a>
+
+<div id="a" style="line-height:1">
+    上传
+</div>
+
+<div id="b" style="line-height:1">
+    上传
+</div>
+
+<div id="c" style="line-height:1">
+    上传
+</div>
+
+<script>
+    uploadInit({pick:{id:'#a'}})
+    uploadInit({pick:{id:'#b'}})
+    uploadInit({pick:{id:'#c'}})
+</script>
+
+</body>
+</html>
