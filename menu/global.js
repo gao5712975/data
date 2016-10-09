@@ -11,6 +11,106 @@ $(function () {
     });
 });
 
+
+// window hash标志 iframe ID 
+! function (win, key, frame) {
+    function Route() {
+        this.regex = {};
+        this.data = {};
+    }
+
+    var _self;
+    if (!win.top.$R) {
+        _self = win.top.$R = new Route();
+    }
+
+    Route.prototype.changeState = function (hash) {
+        if (hash) {
+            var url = this.getUrl(hash);
+            var iframe = document.getElementById(frame);
+            iframe.contentWindow.location.replace(url);
+            return true;
+        }
+    };
+
+    Route.prototype.getHash = function () {
+        var r = '#' + key;
+        return location.hash.substr(r.length + 1);
+    };
+
+    Route.prototype.getUrl = function (hash) {
+        return this.regex[hash]
+    };
+
+    //name url 
+    Route.prototype.reg = function (o) {
+        if (o instanceof Array) {
+            for (var i = 0, j = o.length; i < j; i++) {
+                var r = o[i];
+                if (!r.name || !r.url) continue;
+                this.regex[r.name] = r.url;
+            }
+        } else {
+            if (!o.name || !o.url) return this;
+            this.regex[o.name] = o.url;
+        }
+        return this;
+    };
+
+    Route.prototype.listen = function () {
+        win.top.onhashchange = function (event) {
+            var hash = _self.getHash();
+            if (_self.getUrl(hash)) {
+                _self.changeState(hash);
+            }
+        }
+    };
+    //_hash 默认hash 没有注册的路由就会跳到这个默认的路由上
+    Route.prototype.start = function (_hash) {
+        var a = win.top.document.querySelectorAll('a[data-route]');
+        if (a && a.length > 0) {
+            for (var i = 0, j = a.length; i < j; i++) {
+                var _a = a[i];
+                var r = _a.getAttribute('data-route');
+                _a.setAttribute('href', '#' + key + '/' + r);
+            }
+        }
+        var hash = _self.getHash();
+        if (_self.getUrl(hash)) {
+            _self.changeState(hash);
+        } else if (_hash) {
+            _self.changeState(_hash);
+            top.location.hash = key + '/' + _hash;
+        }
+        _self.listen();
+    };
+
+    Route.prototype.searchJSON = function(url,obj){
+        !obj && (obj = {});
+        var l = url.indexOf('?');
+        if(l != -1){
+            var s = url.substr(l+1,l.length);
+            var _s = s.split("&");
+            for (var i = 0; i < _s.length; i++) {
+                var _ss = _s[i];
+                var _sss = _ss.split('=');
+                obj[_sss[0]] = _sss[1];
+            }
+        }
+    }
+
+    Route.prototype.go = function (hash, data) {
+        !data && (data = {});
+        this.searchJSON(hash,data);
+        var l = hash.indexOf('?');
+        var url = l == -1 ? (hash):(hash.substr(0,l));
+        if (_self.getUrl(url)) {
+            top.location.hash = '#' + key + '/' + url;
+            _self.data = data;
+        }
+    }
+}(this.top, '!', 'iframe');
+
 //
 // /**
 //  * 快速排序法

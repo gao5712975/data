@@ -21,7 +21,7 @@
             <ul>
                 <li class="menu-pl">
                     <p>订单管理</p>
-                    <ul class="active">
+                    <ul class="">
                         <li>
                             <a href="#!/menu/a.html" data-route="a"><span>查询排期</span></a>
                         </li>
@@ -82,7 +82,7 @@
 
     <script>
         $R.reg([{name:'a',url:'a/a.html'},{name:'b',url:'b/b.html'},{name:'c',url:'c.html'}]);
-        $R.start();
+        $R.start('a');//默认路由
     </script>
 </body>
 
