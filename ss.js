@@ -2607,6 +2607,7 @@ try {
                         }
                     },
                     translateScaleToPixelSize: function (t, e, i) {
+                        //maybe siez
                         var n = i || {};
                         return t = Math.abs(t),
                             e = Math.abs(e),
@@ -4609,6 +4610,7 @@ try {
                     },
                     //TODO 13 请求成功后 执行jsonp 回调函数
                     callback: function (e) {
+                        //iframe 请求参数获取 i
                         var i = this.slot.getSlotInfo(e.tuid);
                         i.response = e;
                             this.slot.setStatus(i.id, this.config.STATUS_RESPONSE);

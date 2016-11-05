@@ -9,15 +9,15 @@ window.onload = function () {
                 window.top.$R.go(route);
             } else {
                 var routes = {
-                    a:'a/a.html',
-                    b:'b/b.html',
-                    c:'c.html'
+                    a: 'a/a.html',
+                    b: 'b/b.html',
+                    c: 'c.html'
                 }
                 var l = route.indexOf('?');
                 var url = '';
-                if(l != -1){
-                    url = '/menu/' + routes[route.substr(0,l)] + route.substr(l,route.length);
-                }else{
+                if (l != -1) {
+                    url = '/menu/' + routes[route.substr(0, l)] + route.substr(l, route.length);
+                } else {
                     url = '/menu/' + routes[route]
                 }
                 window.top.location.href = url;
@@ -79,9 +79,43 @@ app.directive('ycModule', ['$animate', '$timeout', function ($animate, $timeout)
             var doc = element[0];
             var ok = doc.querySelector('.dialog-submit a.ok');
             var no = doc.querySelector('.dialog-submit a.no');
+            var dTitle = doc.querySelector('.dialog-title')
             var title = doc.querySelector('.dialog-title .title')
             var close = doc.querySelector('.dialog-title .dialog-close')
             var wraper = doc.querySelector('.dialog-wraper');
+
+
+            // function move(e) {
+            //     if (e.button == 0) {
+            //         var x = e.movementX;
+            //         var y = e.movementY;
+            //         var xl = wraper.style.marginLeft.replace('px','');
+            //         var yt = wraper.style.marginTop.replace('px','');
+            //         wraper.style.marginLeft = +xl + +x + 'px';
+            //         wraper.style.marginTop = +yt + +y + 'px';
+            //     }
+            // }
+
+            // function mouseup(e) {
+            //     if (e.button == 0) {
+            //         e.target.style.cursor = 'default';
+            //         this.removeEventListener('mousemove', move);
+            //         this.removeEventListener('mouseup', mouseup);
+            //     }
+            // }
+            // dTitle.addEventListener('mousedown', function (e) {
+            //     if (e.button == 0) {
+            //         e.target.style.cursor = 'move';
+            //         this.addEventListener('mousemove', move);
+            //         this.addEventListener('mouseup', mouseup);
+            //     }
+            // })
+
+            // dTitle.addEventListener('mouseout', function (e) {
+            //     dTitle.style.cursor = 'default';
+            //     dTitle.removeEventListener('mousemove', move);
+            //     dTitle.removeEventListener('mouseup', mouseup);
+            // })
 
             var fadeOut = function (element) {
                 $animate.addClass(element, 'animated fadeOut', {
@@ -89,7 +123,7 @@ app.directive('ycModule', ['$animate', '$timeout', function ($animate, $timeout)
                 });
                 $timeout(function () {
                     doc.style.display = 'none';
-                }, 500)
+                }, 500);
             }
 
             var fadeIn = function (element) {
