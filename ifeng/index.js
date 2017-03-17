@@ -6,6 +6,7 @@
  */
 (function () {
 	var iis2_version = '2.0';
+	//单例模式
 	if (typeof(window.iis2) == 'undefined' || window.iis2.version != iis2_version) {
 		window.iis2 = {
 			version: iis2_version,
@@ -21,15 +22,21 @@
 			// p.iswh: 	need fix width and height
 			// p.delay: 1 delay, 9 call, undefined to v1
 			show_a: function(p) {
+				//如果为外部广告
 				if (typeof(p.delay) != 'undefined' && p.tp == 1) {
+					//创建广告位容器
 					if (typeof(p.ap) != 'undefined') {
 						this.delay_show[p.ap] = p;
 						document.write('<div id="iis2_dif_' + p.ap + '"></div>');
 					}
+					//如果为立即广告 直接展现
 					if (p.delay == 9) {
+						//加载js 发送JSONP请求  调用  display2
 						this.show2();
 					}
+					//如果 delay 等于 1 需外部调用show2开展现广告位
 				} else {
+					//加载js 发送JSONP请求 需要传入广告位配置信息  调用 display
 					this.show(p);
 				}
 			},
@@ -37,6 +44,7 @@
 			// synchronous call iis front v1
 			// demo: http://iis1.deliver.ifeng.com/getcode?ap=1234&tp=1&w=1000&h=90&dm=news.ifeng.com&cb=iis2.display&rb=12&rc=1-2&ip=8.8.8.8
 			show: function(p) {
+				// console.info(this.show.caller)
 				var url = 'http://iis1.deliver.ifeng.com';
 				url += '/getcode';
 				url += '?ap=' + p.ap;
@@ -64,12 +72,13 @@
 			// asynchronous call iis front v2
 			// demo: http://iis1.deliver.ifeng.com/getcode?m=1&ap=1877,1925,10550&tp=1&w=220,220,220&h=250,250,510&dm=&cb=iis2.display2&c=1472538420801
 			show2: function() {
+				// console.info(this.show2.caller)
 				var url = 'http://iis1.deliver.ifeng.com';
 				var ap = '', w = '', h = '';
 				for (var dsi in this.delay_show) {
 					var p = this.delay_show[dsi];
 					if (typeof(p.sent) == 'undefined' || !p.sent) { // not sent
-						this.delay_show[dsi].sent = 1;
+						// this.delay_show[dsi].sent = 1;
 						if (ap == '') ap += p.ap; else ap += ',' + p.ap;
 						if (w == '') w += p.w; else w += ',' + p.w;
 						if (h == '') h += p.h; else h += ',' + p.h;
@@ -106,6 +115,8 @@
 			},
 
 			// asynchronous display code (multiple)
+
+			// http://iis1.deliver.ifeng.com/getcode?m=1&ap=1925&tp=1&w=220&h=250&dm=test.sina.com&cb=iis2.display2&c=1488162385265 jsonp
 			display2: function(ps) {
 				for (var psi in ps) {
 					var p = ps[psi];

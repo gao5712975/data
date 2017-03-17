@@ -17,10 +17,12 @@ var MIME = {
     'jar':  'application/java-archive',
     '*':'*/*'
 };
-var webapp = '';
+var webapp = '\\pwa';
 var dir = process.argv[2];
 var ROOT = dir ? dir : process.cwd();
 ROOT += webapp;
+
+console.info(ROOT);
 
 var default_file = '/login.html';
 var http = require('http');
