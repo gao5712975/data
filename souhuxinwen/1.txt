@@ -1,0 +1,1 @@
+bpu api.k.sohu.com/api/channel/v6/news.go
